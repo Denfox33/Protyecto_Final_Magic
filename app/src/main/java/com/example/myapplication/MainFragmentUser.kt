@@ -7,12 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.myapplication.Carta.Carta
+import com.example.myapplication.Carta.CartaCollectionAdaptador
 import com.example.myapplication.Carta.Utilidades
+import com.example.myapplication.Carta.VerCartasActivity
+import com.example.myapplication.Evento.EventCollectionAdaptador
+import com.example.myapplication.Evento.Evento
+import com.example.myapplication.Evento.FragmentUserEventos1
 import com.example.myapplication.Registro.LoginActivity
 import com.example.myapplication.databinding.FragmentUsuarioUserBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -77,5 +86,35 @@ class MainFragmentUser : Fragment(), CoroutineScope {
             startActivity(intent)
             activity?.finish()
         }
+        bind.btnViewCards.setOnClickListener {
+            val intent = Intent(activity, VerCartasActivity::class.java)
+            intent.putExtra("userId", FirebaseAuth.getInstance().currentUser?.uid)
+            startActivity(intent)
+        }
+
+        bind.btnViewEvents.setOnClickListener {
+            val userId = FirebaseAuth.getInstance().currentUser?.uid
+            val dbRef = FirebaseDatabase.getInstance().reference
+            dbRef.child("Usuarios").child(userId!!).child("Eventos").addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val eventList = mutableListOf<Evento>()
+                    for (childSnapshot in snapshot.children) {
+                        val event = childSnapshot.getValue(Evento::class.java)
+                        if (event != null) {
+                            eventList.add(event)
+                        }
+                    }
+
+                    // Display the event collection using the EventCollectionAdaptador
+                    val adapter = EventCollectionAdaptador(eventList)
+                    bind.listaEventos.adapter = adapter
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle error
+                }
+            })
+
     }
 }

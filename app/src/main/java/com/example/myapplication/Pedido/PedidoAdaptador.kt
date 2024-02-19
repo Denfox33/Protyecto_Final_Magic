@@ -31,7 +31,7 @@ class PedidoAdaptador(private var lista_pedidos: MutableList<Pedido>) :
         val precio: TextView = itemView.findViewById(R.id.precio)
         val nombre_carta: TextView = itemView.findViewById(R.id.nombre_carta)
         val fecha: TextView = itemView.findViewById(R.id.fecha)
-        val vender: Button = itemView.findViewById(R.id.vender)
+        val aceptar: Button = itemView.findViewById(R.id.aceptar)
         val denegar: Button = itemView.findViewById(R.id.denegar)
         val desplegable: View = itemView.findViewById(R.id.desplegable)
         val btndesplegar: ImageView = itemView.findViewById(R.id.boton_desplegable)
@@ -65,12 +65,18 @@ class PedidoAdaptador(private var lista_pedidos: MutableList<Pedido>) :
             }
         }
 
-        holder.vender.setOnClickListener {
+        holder.aceptar.setOnClickListener {
             AlertDialog.Builder(contexto)
                 .setTitle("Vender pedido")
                 .setMessage("¿Estás seguro de que quieres vender este pedido?. La carta se pondra como no disponible.")
                 .setPositiveButton("Sí") { dialog, which ->
-                    Utilidades.venderPedido(contexto, item_actual)
+                    // Update the Pedido status to 1 (accepted)
+                    item_actual.estado = 1
+                    Utilidades.updatePedido(contexto, item_actual)
+
+                    // Add the card to the user's collection and update its availability
+                    Utilidades.venderCarta(contexto, item_actual)
+
                     holder.desplegable.visibility = View.GONE
                     holder.btndesplegar.setImageResource(R.drawable.opem)
                 }
@@ -78,14 +84,15 @@ class PedidoAdaptador(private var lista_pedidos: MutableList<Pedido>) :
                 .show()
         }
 
-
-
         holder.denegar.setOnClickListener {
             AlertDialog.Builder(contexto)
                 .setTitle("Denegar pedido")
                 .setMessage("¿Estás seguro de que quieres denegar este pedido?. La carta se pondra como disponible para todos los usuarios.")
                 .setPositiveButton("Sí") { dialog, which ->
-                    Utilidades.denegarPedido(contexto, item_actual)
+                    // Update the Pedido status to 2 (denied)
+                    item_actual.estado = 2
+                    Utilidades.updatePedido(contexto, item_actual)
+
                     holder.desplegable.visibility = View.GONE
                     holder.btndesplegar.setImageResource(R.drawable.opem)
                 }

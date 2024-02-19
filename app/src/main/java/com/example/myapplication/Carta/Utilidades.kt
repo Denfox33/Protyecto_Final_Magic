@@ -146,7 +146,33 @@ class Utilidades {
                     return listaEventos
                 }
 
+        fun updatePedido(context: Context, pedido: Pedido) {
+            val dbRef = FirebaseDatabase.getInstance().reference
 
+            dbRef.child("Pedidos").child(pedido.id!!).setValue(pedido)
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Pedido updated successfully", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(context, "Failed to update Pedido: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
+
+        fun venderCarta(context: Context, pedido: Pedido) {
+            val dbRef = FirebaseDatabase.getInstance().reference
+
+            // Update the Carta status to "no" (not available)
+            dbRef.child("Tienda").child("Cartas").child(pedido.idcarta!!).child("disponibilidad").setValue("no")
+
+            // Add the Carta to the user's collection
+            dbRef.child("Usuarios").child(pedido.idusuario!!).child("Cartas").child(pedido.idcarta!!).setValue(pedido.nombrecarta)
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Carta added to user's collection", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(context, "Failed to add Carta to user's collection: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
 
 
         suspend fun guardarImagenCarta(idGenerado: String, urlimg: Uri): String {

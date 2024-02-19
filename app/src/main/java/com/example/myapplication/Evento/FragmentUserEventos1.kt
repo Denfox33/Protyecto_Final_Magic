@@ -32,7 +32,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [EditarEventoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentEditarEvento : Fragment(), CoroutineScope {
+class FragmentUserEventos1 : Fragment(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
     lateinit var bind: FragmentEditarEventoBinding

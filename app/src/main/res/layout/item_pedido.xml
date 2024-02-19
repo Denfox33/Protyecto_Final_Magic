@@ -155,8 +155,32 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
+        <ImageView
+            android:id="@+id/aceptar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_aceptar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/rechazar"
+            ></ImageView>
+
+        <ImageView
+            android:id="@+id/rechazar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/close"
+            app:layout_constraintStart_toEndOf="@id/aceptar"
+            app:layout_constraintEnd_toEndOf="par"
+            android:layout_marginLeft="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            ></ImageView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </androidx.cardview.widget.CardView>

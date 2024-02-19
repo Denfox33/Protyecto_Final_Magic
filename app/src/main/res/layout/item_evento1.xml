@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:translationZ="10dp"
+    android:layout_margin="10dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:paddingBottom="4dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/limg"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            app:cardCornerRadius="15dp"
+            android:layout_margin="10dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/disponible">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/evento_def"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="12dp"
+            android:text="0"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/euro"
+            app:layout_constraintStart_toEndOf="@id/txtpersonas2"
+
+            app:layout_constraintTop_toBottomOf="@id/disponible"
+
+            />
+
+        <TextView
+            android:id="@+id/euro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="€"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+
+            app:layout_constraintStart_toEndOf="@id/precio"
+            app:layout_constraintTop_toTopOf="@id/precio" />
+
+        <TextView
+            android:id="@+id/fecha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="00/00/0000"
+            android:textSize="19sp"
+            app:layout_constraintTop_toBottomOf="@id/disponible"
+            app:layout_constraintStart_toEndOf="@id/limg"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtpersonas"
+            app:layout_constraintBottom_toBottomOf="@id/limg"
+            app:layout_constraintTop_toBottomOf="@id/fecha"
+            app:layout_constraintStart_toStartOf="@id/fecha"
+            android:text="Personas: "
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/txtpersonas2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio: "
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/limg"
+            app:layout_constraintStart_toStartOf="@id/fecha"
+            app:layout_constraintTop_toBottomOf="@id/fecha"
+            app:layout_constraintVertical_bias="0.02" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/txtpersonas"
+            app:layout_constraintBottom_toBottomOf="@id/barra"
+
+            android:text="0"
+            android:id="@+id/aforo_actual"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/aforo_actual"
+            app:layout_constraintBottom_toBottomOf="@id/txtpersonas"
+            android:text="/"
+            android:id="@+id/barra"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/barra"
+            app:layout_constraintBottom_toBottomOf="@id/barra"
+            android:text="10"
+            android:id="@+id/aforo_max"
+            android:textSize="18sp"
+            />
+
+
+        <TextView
+            android:id="@+id/nombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textSize="25sp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="@id/limg"
+            app:layout_constraintTop_toBottomOf="@id/limg"
+            app:layout_constraintEnd_toEndOf="@id/limg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/disponible"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:background="@color/green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="20dp"
+
+            />
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
