@@ -94,22 +94,12 @@ class MainFragmentUser : Fragment(), CoroutineScope {
 
         bind.btnViewEvents.setOnClickListener {
             val userId = FirebaseAuth.getInstance().currentUser?.uid
-            val dbRef = FirebaseDatabase.getInstance().reference
-            dbRef.child("Usuarios").child(userId!!).child("Eventos").addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val eventList = mutableListOf<Evento>()
-                    for (childSnapshot in snapshot.children) {
-                        val event = childSnapshot.getValue(Evento::class.java)
-                        if (event != null) {
-                            eventList.add(event)
-                        }
-                    }
-
-                    // Display the event collection using the EventCollectionAdaptador
-                    val adapter = EventCollectionAdaptador(eventList)
-                    bind.listaEventos.adapter = adapter
-                }
+            val fragment = FragmentUserEventos1.newInstance(userId)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.container, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
 
                 override fun onCancelled(error: DatabaseError) {
                     // Handle error
