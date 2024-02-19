@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/administradorHomeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/administradorGestionarVentasFragment"
+        android:icon="@drawable/comprar"
+        android:title="Pedidos" />
+
+    <item
+        android:id="@+id/administradorGestionarCartasFragment"
+        android:icon="@drawable/cartas"
+        android:title="Cartas" />
+
+    <item
+        android:id="@+id/administradorGestionarEventosFragment"
+        android:icon="@drawable/eventos"
+        android:title="Eventos" />
+
+    <item
+        android:id="@+id/AdminConfiguracion"
+        android:icon="@drawable/confi"
+        android:title="Confi" />
+
+
+
+</menu>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_admin"
+    app:startDestination="@id/mainAdminFragment">
+
+
+    <fragment
+        android:id="@+id/mainAdminFragment"
+        android:name="com.example.myapplication.MainAdminFragment"
+        android:label="fragment_main_admin"
+        tools:layout="@layout/fragment_main_admin" />
+    <fragment
+        android:id="@+id/fragmentAdminCartas"
+        android:name="com.example.myapplication.admin.FragmentAdminCartas"
+        android:label="Admin Cartas"
+        tools:layout="@layout/fragment_admin_cartas" />
+
+
+
+
+    <fragment
+        android:id="@+id/fragmentAdminEventos"
+        android:name="com.example.myapplication.admin.FragmentAdminEventos"
+        android:label="Admin Eventos"
+        tools:layout="@layout/fragment_evento"
+        >
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentAdminPedidos"
+        android:name="com.example.myapplication.admin.FragmentAdminPedidos"
+        android:label="Admin Pedidos"
+        tools:layout="@layout/fragment_admin_pedidos">
+
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentAdminConfi"
+        android:name="com.example.myapplication.admin.FragmentAdminConfi"
+        android:label="Admin Configuración"
+        tools:layout="@layout/fragment_admin_confi">
+    </fragment>
+    <activity
+        android:id="@+id/crearCarta"
+        android:name="com.example.myapplication.Carta.CrearCarta"
+        android:label="activity_carta_crear"
+        tools:layout="@layout/activity_carta_crear" />
+
+
+
+</navigation>

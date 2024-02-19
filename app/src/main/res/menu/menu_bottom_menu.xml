@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/mainFragmentUser1"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/shopFragmentUser1"
+        android:icon="@drawable/baseline_shop_24"
+        android:title="@string/shop" />
+    <item
+        android:id="@+id/cartasUsuario"
+        android:icon="@drawable/cartas"
+        android:title="@string/cards" />
+    <item
+        android:id="@+id/eventosUsaurio"
+        android:icon="@drawable/baseline_event_note_24"
+        android:title="@string/events" />
+    <item
+        android:id="@+id/profileFragmentUser1"
+        android:icon="@drawable/baseline_person_24"
+        android:title="@string/profile" />
+
+
+</menu>

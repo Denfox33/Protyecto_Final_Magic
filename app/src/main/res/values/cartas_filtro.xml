@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="order_options_cartas">
+        <item>Nombre Ascendente</item>
+        <item>Nombre Descendente</item>
+        <item>Color Ascendente</item>
+        <item>Color Descendente</item>
+        <item>Precio Ascendente</item>
+        <item>Precio Descendente</item>
+        <item>Stock Ascendente</item>
+        <item>Stock Descendente</item>
+        <item>Disponibles Ascendente</item>
+        <item>Disponibles Descendente</item>
+    </string-array>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="disponibilidad_cartas">
+        <item>Si</item>
+        <item>No</item>
+    </array>
+</resources>

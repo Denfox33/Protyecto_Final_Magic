@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragmentUser">
+
+
+    <fragment
+        android:id="@+id/mainFragmentUser"
+        android:name="com.example.myapplication.MainFragmentUser"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_orders_user" />
+    <fragment
+        android:id="@+id/fragmetUserCartas1"
+        android:name="com.example.myapplication.ShopFragmentUser"
+        android:label="fragment_user_cartas"
+        tools:layout="@layout/fragment_shop_user" />
+    <fragment
+        android:id="@+id/infoUserProfile"
+        android:name="com.example.myapplication.OrdersFragmentUser"
+        android:label="fragment_orders_profile"
+        tools:layout="@layout/fragment_usuario_user" />
+    <fragment
+        android:id="@+id/profileFragmentUser"
+        android:name="com.example.myapplication.ProfileFragmentUser"
+        android:label="fragment_profile_user"
+        tools:layout="@layout/fragment_profile_user" />
+    <fragment
+        android:id="@+id/configFragmentUser"
+        android:name="com.example.myapplication.User.FragmentUsuarioConfi"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_usuario_confi" />
+
+    <fragment
+        android:id="@+id/evnetosUsuario"
+        android:name="com.example.myapplication.Evento.EventosFragment"
+        android:label="fragment_eventos"
+        tools:layout="@layout/fragment_usuer_eventos"></fragment>
+    <fragment
+        android:id="@+id/fragmentUserPedidos"
+        android:name="com.example.myapplication.User.FragmentUserPedidos"
+        android:label="fragment_user_pedidos"
+        tools:layout="@layout/fragment_user_pedidos" />
+</navigation>
