@@ -102,6 +102,7 @@
             android:layout_height="wrap_content"
             android:background="@color/black2"
             android:text="Agregar carta"
+            android:visibility="gone"
             android:translationZ="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

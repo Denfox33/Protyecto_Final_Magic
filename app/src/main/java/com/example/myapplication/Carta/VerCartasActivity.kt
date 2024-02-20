@@ -40,5 +40,9 @@ class VerCartasActivity : AppCompatActivity() {
                 // Handle error
             }
         })
+        bind.volverInicioCartas.setOnClickListener {
+            finish()
+        }
     }
+
 }

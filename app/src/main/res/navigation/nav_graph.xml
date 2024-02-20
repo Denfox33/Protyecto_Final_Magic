@@ -25,7 +25,13 @@
         android:id="@+id/profileFragmentUser"
         android:name="com.example.myapplication.ProfileFragmentUser"
         android:label="fragment_profile_user"
-        tools:layout="@layout/fragment_profile_user" />
+        tools:layout="@layout/fragment_profile_user">
+
+    <action
+            android:id="@+id/action_profileFragmentUser_to_configFragmentUser"
+            app:destination="@id/configFragmentUser" />
+
+    </fragment>
     <fragment
         android:id="@+id/configFragmentUser"
         android:name="com.example.myapplication.User.FragmentUsuarioConfi"
@@ -42,4 +48,17 @@
         android:name="com.example.myapplication.User.FragmentUserPedidos"
         android:label="fragment_user_pedidos"
         tools:layout="@layout/fragment_user_pedidos" />
+
+    <fragment
+        android:id="@+id/fragmentVerEventosUsuario"
+        android:name="com.example.myapplication.Evento.EventosFragment"
+        android:label="fragment_user_cartas"
+        tools:layout="@layout/fragment_usuer_eventos" />
+
+    <fragment
+        android:id="@+id/fragmentUserEventosColection"
+        android:name="com.example.myapplication.User.FragmentUsuerEventos"
+        android:label="fragment_user_eventos"
+        tools:layout="@layout/activity_eventos_ver_usuario" />
+
 </navigation>

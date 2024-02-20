@@ -37,8 +37,10 @@
         <activity android:name=".Carta.VerCartas" />
         <activity android:name=".Carta.Carta" />
         <activity android:name=".ViewCartasActivity" />
+        <activity android:name=".Carta.VerCartasActivity" />
         <activity android:name=".Carta.EditarCarta" />
-        <activity android:name=".Evento.Add" />
+        <activity android:name=".Evento.VerEventosActivity" />
+
 
     </application>
 

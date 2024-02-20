@@ -16,18 +16,21 @@ class EventCollectionAdaptador(private var lista_eventos: MutableList<Evento>):
     private var lista_filtrada = lista_eventos
 
     class EventoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nombre: TextView = itemView.findViewById(R.id.tvNombreEvento)
-        val fecha: TextView = itemView.findViewById(R.id.tvFecha)
+        val nombre: TextView = itemView.findViewById(R.id.nombre)
+        val fecha: TextView = itemView.findViewById(R.id.fecha)
         val precio: TextView = itemView.findViewById(R.id.tvPrecio)
-        val aforo: TextView = itemView.findViewById(R.id.tvAforo)
-        val imagen: ImageView = itemView.findViewById(R.id.ivEvento)
-        val editar: Button = itemView.findViewById(R.id.btnEditE)
-        val eliminar: Button = itemView.findViewById(R.id.btnQuitE)
+        val aforo: TextView = itemView.findViewById(R.id.aforo_actual)
+        val aforo_max: TextView = itemView.findViewById(R.id.aforo_max)
+        val imagen: ImageView = itemView.findViewById(R.id.img)
+        val apuntarse: Button = itemView.findViewById(R.id.adButton)
+        val salir: Button = itemView.findViewById(R.id.delButton)
+        val editar: Button = itemView.findViewById(R.id.EditarEven)
+        val eliminar: Button = itemView.findViewById(R.id.delButton)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventoViewHolder {
         val vista_item =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_evento1, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_evento, parent, false)
         contexto = parent.context
         return EventoViewHolder(vista_item)
     }
@@ -40,7 +43,8 @@ class EventCollectionAdaptador(private var lista_eventos: MutableList<Evento>):
         // Hide the buttons
         holder.editar.visibility = View.GONE
         holder.eliminar.visibility = View.GONE
-
+        holder.eliminar.visibility = View.GONE
+        holder.salir.visibility = View.VISIBLE
         // Other code remains the same...
     }
 }

@@ -81,7 +81,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/sc_eventos"
             android:layout_width="match_parent"
@@ -90,6 +89,7 @@
             app:layout_constraintTop_toBottomOf="@id/header"
             app:layout_constraintBottom_toTopOf="@id/btn_agregar_evento"
             tools:listitem="@layout/item_evento" />
+
 
         <Button
             android:id="@+id/btn_agregar_evento"

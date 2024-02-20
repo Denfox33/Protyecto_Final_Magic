@@ -28,6 +28,18 @@
             />
 
         <TextView
+            android:id="@+id/PedidoEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:layout_marginStart="36dp"
+            android:text="Estado actuals"
+            app:layout_constraintBottom_toTopOf="@id/txt_id_cliente"
+            app:layout_constraintStart_toEndOf="@id/id_pedido"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.333" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Id Cliente:"
@@ -86,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/precio"
+            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@id/txt_precio"
             app:layout_constraintEnd_toStartOf="@id/txt_precio"
             android:text="0"
@@ -95,9 +108,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/txt_precio"
             app:layout_constraintBottom_toTopOf="@id/desplegable"
-            app:layout_constraintTop_toBottomOf="@id/txt_nombre_carta"
+            app:layout_constraintTop_toBottomOf="@id/txt_id_cliente"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="€"
+            android:textSize="30sp"
             android:layout_marginEnd="10dp"
             />
 
@@ -114,21 +128,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/desplegable"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/txt_precio"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"
+
             >
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/vender"
-                android:text="Vender"
+                android:id="@+id/aceptar"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/denegar"
-                android:background="@drawable/add"
+                android:background="@drawable/ic_aceptar"
                 android:textColor="@color/white"
                 />
 
@@ -136,9 +150,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/denegar"
-                android:text="Denegar"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@id/vender"
+                app:layout_constraintStart_toEndOf="@id/aceptar"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@drawable/close"
                 android:textColor="@color/white"
@@ -154,29 +167,8 @@
             app:layout_constraintTop_toBottomOf="@id/desplegable"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
             />
-        <ImageView
-            android:id="@+id/aceptar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginLeft="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:src="@drawable/ic_aceptar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/rechazar"
-            ></ImageView>
-
-        <ImageView
-            android:id="@+id/rechazar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/close"
-            app:layout_constraintStart_toEndOf="@id/aceptar"
-            app:layout_constraintEnd_toEndOf="par"
-            android:layout_marginLeft="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            ></ImageView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

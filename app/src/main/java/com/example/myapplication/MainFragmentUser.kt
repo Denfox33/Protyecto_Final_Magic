@@ -2,10 +2,12 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.Carta.Carta
 import com.example.myapplication.Carta.CartaCollectionAdaptador
@@ -14,7 +16,9 @@ import com.example.myapplication.Carta.VerCartasActivity
 import com.example.myapplication.Evento.EventCollectionAdaptador
 import com.example.myapplication.Evento.Evento
 import com.example.myapplication.Evento.FragmentUserEventos1
+import com.example.myapplication.Evento.VerEventosActivity
 import com.example.myapplication.Registro.LoginActivity
+import com.example.myapplication.User.FragmentUsuerEventos
 import com.example.myapplication.databinding.FragmentUsuarioUserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -30,11 +34,13 @@ import kotlin.coroutines.CoroutineContext
 
 class MainFragmentUser : Fragment(), CoroutineScope {
 
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adaptador: EventCollectionAdaptador
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main
 
     private lateinit var bind: FragmentUsuarioUserBinding
-    private lateinit var db_ref :DatabaseReference
+    private lateinit var db_ref: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,14 +75,6 @@ class MainFragmentUser : Fragment(), CoroutineScope {
             }
         }
 
-        bind.btnViewCards.setOnClickListener {
-            // Aquí puedes agregar el código para mostrar las cartas de la colección del cliente
-        }
-
-        bind.btnViewEvents.setOnClickListener {
-            // Aquí puedes agregar el código para mostrar los eventos a los que se ha apuntado el cliente
-        }
-
         bind.btnLogout.setOnClickListener {
             // Cerrar la sesión del usuario actual
             FirebaseAuth.getInstance().signOut()
@@ -86,6 +84,7 @@ class MainFragmentUser : Fragment(), CoroutineScope {
             startActivity(intent)
             activity?.finish()
         }
+
         bind.btnViewCards.setOnClickListener {
             val intent = Intent(activity, VerCartasActivity::class.java)
             intent.putExtra("userId", FirebaseAuth.getInstance().currentUser?.uid)
@@ -93,18 +92,12 @@ class MainFragmentUser : Fragment(), CoroutineScope {
         }
 
         bind.btnViewEvents.setOnClickListener {
-            val userId = FirebaseAuth.getInstance().currentUser?.uid
-            val fragment = FragmentUserEventos1.newInstance(userId)
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.container, fragment)
-                .addToBackStack(null)
-                .commit()
+            Log.v("MainFragmentUser", "btnViewEvents clicked")
+            val intent = Intent(activity, VerEventosActivity::class.java)
+            intent.putExtra("userId", FirebaseAuth.getInstance().currentUser?.uid) // Añade esta línea
+            Log.v("MainFragmentUser", "Intent created")
+            startActivity(intent)
+            Log.v("MainFragmentUser", "Activity started")
         }
-
-                override fun onCancelled(error: DatabaseError) {
-                    // Handle error
-                }
-            })
-
     }
 }
