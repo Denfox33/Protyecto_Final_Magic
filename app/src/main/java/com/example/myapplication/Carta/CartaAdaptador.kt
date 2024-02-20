@@ -46,6 +46,7 @@ class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
         val editar: Button = itemView.findViewById(R.id.btnEditC)
         val eliminar: Button = itemView.findViewById(R.id.btnQuitC)
         val comprar :Button = itemView.findViewById(R.id.comprar)
+        val txtdisponible: TextView = itemView.findViewById(R.id.txtdisponible)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartaViewHolder {
@@ -58,8 +59,23 @@ class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
     override fun getItemCount(): Int = lista_filtrada.size
 
     override fun onBindViewHolder(holder: CartaViewHolder, position: Int) {
-
         val item_actual = lista_filtrada[position]
+
+        holder.nombre.text = item_actual.nombreCarta
+        holder.precio.text = item_actual.precio.toString()
+        holder.stock.text = item_actual.stock.toString()
+
+
+        if (item_actual.disponibilidad.equals("si", ignoreCase = true)) {
+            holder.disponible.setBackgroundColor(Color.GREEN)
+            holder.txtdisponible.text = "Disponible"
+            holder.comprar.visibility = View.VISIBLE
+        } else {
+            holder.disponible.setBackgroundColor(Color.RED)
+            holder.txtdisponible.text = "No Disponible"
+            holder.comprar.visibility = View.GONE
+        }
+
         if (isAdmin) {
             holder.editar.visibility = View.VISIBLE
             holder.eliminar.visibility = View.VISIBLE
@@ -71,14 +87,16 @@ class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
 
             holder.comprar.setOnClickListener {
                 // Comprueba si la carta está disponible antes de permitir la compra
-                if (item_actual.disponibilidad == "si") {
+                if (item_actual.disponibilidad.equals("si", ignoreCase = true)) {
                     // Aquí añades la carta a la colección del usuario en la base de datos
                     val userId = FirebaseAuth.getInstance().currentUser?.uid // Obtén el ID del usuario
                     val dbRef = FirebaseDatabase.getInstance().reference
+                    holder.txtdisponible.text ="Disponible"
                     dbRef.child("Usuarios").child(userId!!).child("Cartas").child(item_actual.id).setValue(item_actual)
 
                     // Actualiza la disponibilidad de la carta en la base de datos
-                    item_actual.disponibilidad = "no"
+                   // item_actual.disponibilidad = "no"
+                    holder.txtdisponible.text ="No Disponible"
                     dbRef.child("Tienda").child("Cartas").child(item_actual.id).setValue(item_actual)
 
                     Toast.makeText(contexto, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
@@ -101,6 +119,7 @@ class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
 
         if (item_actual.disponibilidad == "si"){
             holder.disponible.setBackgroundColor(Color.GREEN)
+
         } else {
             holder.disponible.setBackgroundColor(Color.RED)
         }

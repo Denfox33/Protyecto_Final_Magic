@@ -28,45 +28,102 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/tvNombreCarta"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Nombre de la carta"
-            android:textColor="@color/white" />
+            android:layout_height="wrap_content"></LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Nombre:"
+                    android:textColor="@color/white" />
+                <TextView
+                    android:id="@+id/tvNombreCarta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Nombre de la carta"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Precio:"
+                       android:layout_marginEnd="10dp"
+                       android:textColor="@color/white"> </TextView>
+                   <TextView
+                       android:id="@+id/tvPrecio"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginRight="10dp"
+                       android:text="Precio "
+                       android:textColor="@color/white" />
+               </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stock:"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="@color/white"> </TextView>
+                <TextView
+                    android:id="@+id/tvStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Stock"
+                    android:textColor="@color/white" />
+
+
+
+
+
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tvPrecio"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Precio "
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/tvStock"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:text="Color:"
                 android:layout_marginEnd="10dp"
-                android:text="Stock"
                 android:textColor="@color/white" />
-
             <TextView
                 android:id="@+id/tvColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Color"
                 android:textColor="@color/white" />
-
-
         </LinearLayout>
 
 
@@ -78,7 +135,20 @@
             android:background="@color/green"
             android:visibility="visible"
 
-            />
+            >
+            <TextView
+                android:id="@+id/txtdisponible"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="disponible">
+
+            </TextView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <LinearLayout
             android:id="@+id/LiAministrar"
@@ -107,6 +177,7 @@
                 android:textColor="@color/blue" />
 
         </LinearLayout>
+            </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/comprar"
