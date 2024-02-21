@@ -50,11 +50,7 @@
         android:name="com.example.myapplication.Evento.EventosFragment"
         android:label="fragment_eventos"
         tools:layout="@layout/fragment_usuer_eventos"></fragment>
-    <fragment
-        android:id="@+id/fragmentUserPedidos"
-        android:name="com.example.myapplication.User.FragmentUserPedidos"
-        android:label="fragment_user_pedidos"
-        tools:layout="@layout/fragment_user_pedidos" />
+
 
     <fragment
         android:id="@+id/fragmentVerEventosUsuario"
@@ -67,5 +63,13 @@
         android:name="com.example.myapplication.User.FragmentUsuerEventos"
         android:label="fragment_user_eventos"
         tools:layout="@layout/activity_eventos_ver_usuario" />
+    <fragment
+        android:id="@+id/fragmentUsuarioColeccionCartas"
+        android:name="com.example.myapplication.Userpackage.FragmentUsuarioColeccionCartas"
+        android:label="FragmentUsuarioColeccionCartas" />
+    <fragment
+        android:id="@+id/fragmentUserPedidos"
+        android:name="com.example.myapplication.Pedido.FragmentUserPedidos"
+        android:label="FragmentUserPedidos" />
 
 </navigation>

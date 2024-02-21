@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User.FragmentUserCarta1">
+    tools:context=".User.FragmentUsuarioColeccionCartas">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lista_cartas1"
@@ -12,7 +13,5 @@
         android:padding="4dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/item_carta" />
-
-
 
 </FrameLayout>

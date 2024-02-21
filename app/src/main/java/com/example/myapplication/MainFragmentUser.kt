@@ -19,6 +19,7 @@ import com.example.myapplication.Evento.FragmentUserEventos1
 import com.example.myapplication.Evento.VerEventosActivity
 import com.example.myapplication.Registro.LoginActivity
 import com.example.myapplication.User.FragmentUsuerEventos
+import com.example.myapplication.Userpackage.FragmentUsuarioColeccionCartas
 import com.example.myapplication.databinding.FragmentUsuarioUserBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -86,9 +87,12 @@ class MainFragmentUser : Fragment(), CoroutineScope {
         }
 
         bind.btnViewCards.setOnClickListener {
-            val intent = Intent(activity, VerCartasActivity::class.java)
-            intent.putExtra("userId", FirebaseAuth.getInstance().currentUser?.uid)
-            startActivity(intent)
+            val fragment = FragmentUsuarioColeccionCartas()
+            val fragmentManager = activity?.supportFragmentManager
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.nav_host_fragment, fragment)
+            fragmentTransaction?.addToBackStack(null)
+            fragmentTransaction?.commit()
         }
 
         bind.btnViewEvents.setOnClickListener {
