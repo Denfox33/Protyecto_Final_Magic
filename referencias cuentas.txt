@@ -1,0 +1,8 @@
+Administrador 
+
+Nombre:	admin@admin.com
+contraseña: administrador
+
+Para usuario puede ser cualquiere mientra contenga el @
+Nombre: usuario1@usuario.com
+contraseña: usuario12345	
