@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.Carta.Utilidades
 import com.example.myapplication.R
 
-class PedidoAdaptador(private var lista_pedidos: MutableList<Pedido>) :
+class PedidoAdaptador(var lista_pedidos: MutableList<Pedido>) :
     RecyclerView.Adapter<PedidoAdaptador.PedidoViewHolder>() {
     private lateinit var contexto: Context
     private var lista_filtrada = lista_pedidos
 
     fun filter(text: String) {
         val filteredList = lista_pedidos.filter { pedido ->
-            pedido.nombrecarta?.contains(text, ignoreCase = true) == true
+            pedido.cartaNombre?.contains(text, ignoreCase = true) == true
         }
         lista_pedidos = filteredList.toMutableList()
         notifyDataSetChanged()
@@ -49,10 +49,10 @@ class PedidoAdaptador(private var lista_pedidos: MutableList<Pedido>) :
     override fun onBindViewHolder(holder: PedidoViewHolder, position: Int) {
         val item_actual = lista_filtrada[position]
         holder.id_pedido.text = item_actual.id
-        holder.id_carta.text = item_actual.idcarta
-        holder.id_cliente.text = item_actual.idusuario
+        holder.id_carta.text = item_actual.cartaId
+        holder.id_cliente.text = item_actual.userId
         holder.precio.text = item_actual.precio.toString()
-        holder.nombre_carta.text = item_actual.nombrecarta
+        holder.nombre_carta.text = item_actual.cartaNombre
         holder.fecha.text = item_actual.fecha
 
         holder.btndesplegar.setOnClickListener {
@@ -71,7 +71,7 @@ class PedidoAdaptador(private var lista_pedidos: MutableList<Pedido>) :
                 .setMessage("¿Estás seguro de que quieres vender este pedido?. La carta se pondra como no disponible.")
                 .setPositiveButton("Sí") { dialog, which ->
                     // Update the Pedido status to 1 (accepted)
-                    item_actual.estado = 1
+                    item_actual.estado ="Aceptado"
                     Utilidades.updatePedido(contexto, item_actual)
 
                     // Add the card to the user's collection and update its availability
@@ -90,7 +90,7 @@ class PedidoAdaptador(private var lista_pedidos: MutableList<Pedido>) :
                 .setMessage("¿Estás seguro de que quieres denegar este pedido?. La carta se pondra como disponible para todos los usuarios.")
                 .setPositiveButton("Sí") { dialog, which ->
                     // Update the Pedido status to 2 (denied)
-                    item_actual.estado = 2
+                    item_actual.estado = "Denegado"
                     Utilidades.updatePedido(contexto, item_actual)
 
                     holder.desplegable.visibility = View.GONE

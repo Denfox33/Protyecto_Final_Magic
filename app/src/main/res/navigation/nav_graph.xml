@@ -20,7 +20,14 @@
         android:id="@+id/infoUserProfile"
         android:name="com.example.myapplication.OrdersFragmentUser"
         android:label="fragment_orders_profile"
-        tools:layout="@layout/fragment_usuario_user" />
+        tools:layout="@layout/fragment_usuario_user" >
+        <action
+            android:id="@+id/action_infoUserProfile_to_fragmentUserPedidos"
+            app:destination="@id/fragmentUserPedidos" />
+        <action
+            android:id="@+id/action_infoUserProfile_to_fragmentUserEventosColection"
+            app:destination="@id/fragmentUserEventosColection" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragmentUser"
         android:name="com.example.myapplication.ProfileFragmentUser"

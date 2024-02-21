@@ -1,11 +1,19 @@
 package com.example.myapplication.Pedido
 
-data class Pedido (
-    var id: String? = null,
-    var idusuario: String? = null,
-    var idcarta: String? = null,
-    var nombrecarta: String? = null,
-    var precio: Double? = 0.0,
-    var fecha: String? = null,
-    var estado: Int? = 0
-)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Pedido(
+    val id: String?=null,
+    val cartaId: String?=null,
+    val userId: String?=null,
+    val cartaNombre: String?=null,
+    val cartaColor: String?=null,
+    val precio: Double?=null,
+    var estado: String?=null,
+    val fecha: String?=null,
+    val urlCarta: String?=null,
+    val notificacionEstado: Int?=null,
+    val notificacionUsuario: String?=null
+) : Parcelable

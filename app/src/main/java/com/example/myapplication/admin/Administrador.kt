@@ -8,6 +8,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.example.myapplication.Carta.FragmentCarta
 import com.example.myapplication.Evento.EventosFragment
+import com.example.myapplication.Pedido.FragmentAdminPedidos
 import com.example.myapplication.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 class Administrador : AppCompatActivity() {

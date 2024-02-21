@@ -8,8 +8,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-
-
 class VerCartasActivity : AppCompatActivity() {
     private lateinit var bind: ActivityCartaVerBinding
 
@@ -20,29 +18,39 @@ class VerCartasActivity : AppCompatActivity() {
 
         val userId = intent.getStringExtra("userId")
         val dbRef = FirebaseDatabase.getInstance().reference
-        dbRef.child("Usuarios").child(userId!!).child("Cartas").addListenerForSingleValueEvent(object :
+
+        dbRef.child("Tienda").child("Cartas").addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val cardList = mutableListOf<Carta>()
                 for (childSnapshot in snapshot.children) {
                     val card = childSnapshot.getValue(Carta::class.java)
                     if (card != null) {
-                        cardList.add(card)
+                        dbRef.child("Usuarios").child(userId!!).child("Cartas").orderByValue().equalTo(card.nombreCarta).addListenerForSingleValueEvent(object :
+                            ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                if (snapshot.exists()) {
+                                    cardList.add(card)
+                                    val adapter = CartaCollectionAdaptador(cardList)
+                                    bind.listaCartas.adapter = adapter
+                                }
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                // Handle error
+                            }
+                        })
                     }
                 }
-
-                // Display the card collection using the CartaCollectionAdaptador
-                val adapter = CartaCollectionAdaptador(cardList)
-                bind.listaCartas.adapter = adapter
             }
 
             override fun onCancelled(error: DatabaseError) {
                 // Handle error
             }
         })
+
         bind.volverInicioCartas.setOnClickListener {
             finish()
         }
     }
-
 }

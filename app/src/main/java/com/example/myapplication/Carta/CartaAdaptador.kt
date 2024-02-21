@@ -1,10 +1,9 @@
 package com.example.myapplication
 
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +13,18 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.PopupMenu
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.Carta.Carta
 import com.example.myapplication.Carta.EditarCarta
 import com.example.myapplication.Carta.Utilidades
+import com.example.myapplication.Pedido.Pedido
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ServerValue
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
     RecyclerView.Adapter<CartaAdaptador.CartaViewHolder>(), Filterable {
@@ -34,7 +36,6 @@ class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
         val email = FirebaseAuth.getInstance().currentUser?.email
         isAdmin = email?.endsWith("@admin.com") ?: false
     }
-
 
     class CartaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombre: TextView = itemView.findViewById(R.id.tvNombreCarta)
@@ -65,7 +66,6 @@ class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
         holder.precio.text = item_actual.precio.toString()
         holder.stock.text = item_actual.stock.toString()
 
-
         if (item_actual.disponibilidad.equals("si", ignoreCase = true)) {
             holder.disponible.setBackgroundColor(Color.GREEN)
             holder.txtdisponible.text = "Disponible"
@@ -91,21 +91,43 @@ class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
                     // Aquí añades la carta a la colección del usuario en la base de datos
                     val userId = FirebaseAuth.getInstance().currentUser?.uid // Obtén el ID del usuario
                     val dbRef = FirebaseDatabase.getInstance().reference
-                    holder.txtdisponible.text ="Disponible"
-                    dbRef.child("Usuarios").child(userId!!).child("Cartas").child(item_actual.id).setValue(item_actual)
 
-                    // Actualiza la disponibilidad de la carta en la base de datos
-                   // item_actual.disponibilidad = "no"
-                    holder.txtdisponible.text ="No Disponible"
-                    dbRef.child("Tienda").child("Cartas").child(item_actual.id).setValue(item_actual)
+                    // Create a new order
+                    val orderId = dbRef.child("Pedidos").push().key
+                    val order = Pedido(
+                        id = orderId,
+                        cartaId = item_actual.id,
+                        userId = userId,
+                        cartaNombre = item_actual.nombreCarta,
+                        cartaColor = item_actual.color,
+                        precio = item_actual.precio,
+                        estado = "Pendiente",
+                        fecha = SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(Date()),
+                        urlCarta = item_actual.urlCarta,
+                        notificacionUsuario = Settings.Secure.getString(contexto.contentResolver, Settings.Secure.ANDROID_ID)
+                    )
 
-                    Toast.makeText(contexto, "Carta añadida al carrito", Toast.LENGTH_SHORT).show()
+                    orderId?.let {
+                        dbRef.child("Pedidos").child(it).setValue(order).addOnSuccessListener {
+                            // Reduce the stock of the card in the database
+                            val newStock = item_actual.stock - 1
+                            dbRef.child("Tienda").child("Cartas").child(item_actual.id).child("stock").setValue(newStock)
+
+                            // Set availability to false if the stock is 0
+                            if (newStock == 0) {
+                                dbRef.child("Tienda").child("Cartas").child(item_actual.id).child("disponibilidad").setValue("no")
+                            }
+
+                            Toast.makeText(contexto, "Pedido creado", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Toast.makeText(contexto, "Error al crear el pedido", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 } else {
                     Toast.makeText(contexto, "Esta carta no está disponible", Toast.LENGTH_SHORT).show()
                 }
             }
         }
-
 
         holder.nombre.text = item_actual.nombreCarta
         holder.precio.text = item_actual.precio.toString()
@@ -141,6 +163,7 @@ class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
             contexto.startActivity(intent)
         }
     }
+
     fun sortListByOrder(order: String) {
         when (order) {
             "Nombre Ascendente" -> lista_filtrada.sortBy { it.nombreCarta }
@@ -151,7 +174,6 @@ class CartaAdaptador(private var lista_cartas: MutableList<Carta>):
         }
         notifyDataSetChanged()
     }
-
 
     override fun getFilter(): Filter {
         return object : Filter() {

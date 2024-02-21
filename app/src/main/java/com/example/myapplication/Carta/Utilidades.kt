@@ -162,10 +162,10 @@ class Utilidades {
             val dbRef = FirebaseDatabase.getInstance().reference
 
             // Update the Carta status to "no" (not available)
-            dbRef.child("Tienda").child("Cartas").child(pedido.idcarta!!).child("disponibilidad").setValue("no")
+            dbRef.child("Tienda").child("Cartas").child(pedido.cartaId!!).child("disponibilidad").setValue("no")
 
             // Add the Carta to the user's collection
-            dbRef.child("Usuarios").child(pedido.idusuario!!).child("Cartas").child(pedido.idcarta!!).setValue(pedido.nombrecarta)
+            dbRef.child("Usuarios").child(pedido.userId!!).child("Cartas").child(pedido.id!!).setValue(pedido.cartaNombre)
                 .addOnSuccessListener {
                     Toast.makeText(context, "Carta added to user's collection", Toast.LENGTH_SHORT).show()
                 }
@@ -242,7 +242,7 @@ class Utilidades {
         fun venderPedido(contexto: Context, itemActual: Pedido) {
             db_ref.child("Tienda").child("Pedidos").child(itemActual.id!!).child("estado")
                 .setValue("1")
-            db_ref.child("Tienda").child("Cartas").child(itemActual.idcarta!!).child("disponible")
+            db_ref.child("Tienda").child("Cartas").child(itemActual.cartaId!!).child("disponible")
                 .setValue("0")
             Toast.makeText(contexto, "Pedido vendido", Toast.LENGTH_SHORT).show()
         }
@@ -251,7 +251,7 @@ class Utilidades {
             //borrar de la base de datos
             db_ref.child("Tienda").child("Pedidos").child(itemActual.id!!).removeValue()
             //poner carta como disponible
-            db_ref.child("Tienda").child("Cartas").child(itemActual.idcarta!!).child("disponible")
+            db_ref.child("Tienda").child("Cartas").child(itemActual.cartaId!!).child("disponible")
                 .setValue("1")
             Toast.makeText(contexto, "Pedido denegado", Toast.LENGTH_SHORT).show()
 
