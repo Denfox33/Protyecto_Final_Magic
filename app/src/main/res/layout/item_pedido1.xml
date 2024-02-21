@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:translationZ="10dp"
+    app:cardCornerRadius="20dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layaut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:paddingBottom="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/id_pedido"
+            android:text="Detalle de Pedido"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="20dp"
+            app:layout_constraintBottom_toTopOf="@id/txt_id_cliente"
+            />
+
+        <TextView
+            android:id="@+id/PedidoEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:layout_marginStart="36dp"
+            android:text="Estado actuals"
+            app:layout_constraintBottom_toTopOf="@id/txt_id_cliente"
+            app:layout_constraintStart_toEndOf="@id/id_pedido"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.333" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Id Cliente:"
+            android:id="@+id/txt_id_cliente"
+            app:layout_constraintTop_toBottomOf="@id/id_pedido"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Id"
+            android:id="@+id/id_cliente"
+            app:layout_constraintTop_toTopOf="@id/txt_id_cliente"
+            app:layout_constraintStart_toEndOf="@id/txt_id_cliente"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Id Carta:"
+            android:id="@+id/txt_id_carta"
+            app:layout_constraintTop_toBottomOf="@id/txt_id_cliente"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IdCarta"
+            android:id="@+id/id_carta"
+            app:layout_constraintTop_toBottomOf="@id/txt_id_cliente"
+            app:layout_constraintStart_toEndOf="@id/txt_id_carta"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre Carta:"
+            android:id="@+id/txt_nombre_carta"
+            app:layout_constraintTop_toBottomOf="@id/txt_id_carta"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Carta"
+            android:id="@+id/nombre_carta"
+            app:layout_constraintTop_toBottomOf="@id/txt_id_carta"
+            app:layout_constraintStart_toEndOf="@id/txt_nombre_carta"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/precio"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@id/txt_precio"
+            app:layout_constraintEnd_toStartOf="@id/txt_precio"
+            android:text="0"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_precio"
+            app:layout_constraintBottom_toTopOf="@id/desplegable"
+            app:layout_constraintTop_toBottomOf="@id/txt_id_cliente"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="€"
+            android:textSize="30sp"
+            android:layout_marginEnd="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fecha"
+            android:text="00/00/0000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

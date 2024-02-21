@@ -55,6 +55,7 @@ class PedidoAdaptador(var lista_pedidos: MutableList<Pedido>) :
         holder.nombre_carta.text = item_actual.cartaNombre
         holder.fecha.text = item_actual.fecha
 
+
         holder.btndesplegar.setOnClickListener {
             if (holder.desplegable.visibility == View.VISIBLE) {
                 holder.desplegable.visibility = View.GONE

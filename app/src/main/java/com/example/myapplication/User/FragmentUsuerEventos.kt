@@ -1,6 +1,7 @@
 package com.example.myapplication.User
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,39 +35,44 @@ class FragmentUsuerEventos : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid // Obtén el ID del usuario actual
-
+        Log.v("FragmentUsuerEventos", "userId: $userId")
         list = mutableListOf()
         db_ref = FirebaseDatabase.getInstance().getReference()
 
-        db_ref.child("Usuarios").child(userId!!).child("Eventos")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    list.clear()
-                    snapshot.children.forEach { child: DataSnapshot? ->
-                        val eventId = child?.getValue(String::class.java)
-                        if (eventId != null) {
-                            db_ref.child("Tienda").child("Eventos").child(eventId).addListenerForSingleValueEvent(object :
-                                ValueEventListener {
+        db_ref.child("Eventos").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                list.clear()
+                Log.v("FragmentUsuerEventos", "snapshot: $snapshot")
+                snapshot.children.forEach { child: DataSnapshot? ->
+                    val eventId = child?.key
+                    Log.v("FragmentUsuerEventos", "eventId: $eventId")
+                    if (eventId != null) {
+                        db_ref.child("Eventos").child(eventId).child("UsuariosUnidos").child(userId!!)
+                            .addListenerForSingleValueEvent(object : ValueEventListener {
+
                                 override fun onDataChange(snapshot: DataSnapshot) {
-                                    val event = snapshot.getValue(Evento::class.java)
-                                    if (event != null) {
-                                        list.add(event)
+                                    if (snapshot.exists()) {
+                                Log.v("FragmentUsuerEventos", "snapshot: $snapshot")
+                                        val evento = child.getValue(Evento::class.java)
+                                        if (evento != null) {
+                                            list.add(evento)
+                                        }
                                     }
-                                    recyclerView.adapter?.notifyDataSetChanged()
+                                    adapter.notifyDataSetChanged()
                                 }
 
                                 override fun onCancelled(error: DatabaseError) {
                                     println(error.message)
                                 }
                             })
-                        }
                     }
                 }
+            }
 
-                override fun onCancelled(error: DatabaseError) {
-                    println(error.message)
-                }
-            })
+            override fun onCancelled(error: DatabaseError) {
+                println(error.message)
+            }
+        })
 
         recyclerView = binding.scEventos
         recyclerView.layoutManager = LinearLayoutManager(context)
