@@ -1,11 +1,6 @@
 {
   "Eventos": {
-    "-Nr-OEREX6hAN7-u9Jom": {
-      "UsuariosUnidos": {
-        "ZfWtZeJxxNaO0LUDlWouhF4Alvu2": true
-      },
-      "aforoactual": 1
-    },
+  
     "-Nr-P-5somF-8dwRvOZe": {
       "UsuariosUnidos": {
         "ZfWtZeJxxNaO0LUDlWouhF4Alvu2": true
@@ -40,29 +35,7 @@
         "user_notification": "d65aa2b54c86de0b",
         "user_type": "user"
       },
-      "-Nr-NQntixJjb0KlHuIC": {
-        "date": "Feb 19, 2024",
-        "email": "usario1@usuario.com",
-        "id": "-Nr-NQntixJjb0KlHuIC",
-        "name": "usuario",
-        "noti_status": 1,
-        "password": "usuario12345",
-        "url_firebase": "",
-        "user_notification": "d65aa2b54c86de0b",
-        "user_type": "user"
-      },
-      "-Nr-O-L5QHydN2JrSTLh": {
-        "date": "Feb 19, 2024",
-        "email": "admin1@admin.com",
-        "id": "-Nr-O-L5QHydN2JrSTLh",
-        "name": "admin1",
-        "noti_status": 1,
-        "password": "administrador",
-        "url_firebase": "",
-        "user_notification": "d65aa2b54c86de0b",
-        "user_type": "user"
-      }
-    }
+    
   },
   "Tienda": {
     "Cartas": {
@@ -75,25 +48,8 @@
         "stock": -1,
         "urlCarta": "https://firebasestorage.googleapis.com/v0/b/magic-b0778.appspot.com/o/cartas%2Fmtg%2Fimagenes%2F-Nr-OjV1d0tqHGgbpX7i?alt=media&token=78caf198-16b0-47bb-8c19-5a9188aa4e12"
       },
-      "-Nr-OpuwRi6WGdLKWAlC": {
-        "color": "Blanco",
-        "disponibilidad": "No",
-        "id": "-Nr-OpuwRi6WGdLKWAlC",
-        "nombreCarta": "carta 4",
-        "precio": 3,
-        "stock": 2,
-        "urlCarta": "https://firebasestorage.googleapis.com/v0/b/magic-b0778.appspot.com/o/cartas%2Fmtg%2Fimagenes%2F-Nr-OpuwRi6WGdLKWAlC?alt=media&token=2c759d36-a630-4c89-bb09-0a5de20ad2c5"
-      },
-      "-Nr6lZplBTIqwDf5N0b0": {
-        "color": "Azul",
-        "disponibilidad": "Si",
-        "id": "-Nr6lZplBTIqwDf5N0b0",
-        "nombreCarta": "caballo",
-        "precio": 12,
-        "stock": 8,
-        "urlCarta": "https://firebasestorage.googleapis.com/v0/b/magic-b0778.appspot.com/o/cartas%2Fmtg%2Fimagenes%2F-Nr6lZplBTIqwDf5N0b0?alt=media&token=26d7cdc6-dc1b-440a-b8a7-f6b6a89e8a86"
-      }
-    },
+     
+    ,
     "Eventos": {
       "-Nr-OEREX6hAN7-u9Jom": {
         "aforoactual": 0,
